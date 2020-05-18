@@ -25,7 +25,7 @@ final class Record
     private $ttl;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $prio;
 
@@ -58,7 +58,8 @@ final class Record
         $class = strtoupper(next($bits));
         $type  = strtoupper(next($bits));
         $prio  = $type === 'MX' ? ((int) next($bits)) : null;
-        $content = implode(' ', array_splice($bits, key($bits) + 1));
+        $key = (int) key($bits);
+        $content = implode(' ', array_splice($bits, $key + 1));
 
         if ($trimTrailingPeriods) {
             $name = substr($name, -1, 1) === '.' ? substr($name, 0, -1) : $name;
@@ -104,7 +105,7 @@ final class Record
     private static function explodeLine(string $line) : array
     {
         // Split up the line, filter out empty entries, reset keys.
-        $bits = preg_split("/[\t| ]/", $line);
+        $bits = preg_split("/[\t| ]/", $line) ?: [];
         $bits = array_filter($bits);
         return array_values($bits);
     }
