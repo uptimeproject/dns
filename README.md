@@ -1,4 +1,4 @@
-# uptimeproject/dns
+<a href="https://uptimeproject.io" target="_blank"><img src="https://uptimeproject.io/img/logo.png" height="50px" /></a>
 
 This tool is meant as a replacement for `dns_get_record` with some extra functionality.
 
@@ -22,4 +22,3 @@ foreach ($records as $record) {
 ```
 
 Specifying the nameserver is optional.
-
