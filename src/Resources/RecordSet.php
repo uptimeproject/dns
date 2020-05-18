@@ -9,12 +9,19 @@ use UptimeProject\Dns\Exceptions\InvalidArgument;
 
 final class RecordSet implements ArrayAccess, Iterator, Countable
 {
-    /* @var Record[] */
+    /**
+     * @var Record[]
+     */
     private $records;
 
-    /* @var int */
+    /**
+     * @var int
+     */
     private $position = 0;
 
+    /**
+     * @param Record[] $records
+     */
     public function __construct(array $records = [])
     {
         foreach ($records as $record) {
@@ -40,16 +47,26 @@ final class RecordSet implements ArrayAccess, Iterator, Countable
         return new RecordSet($records);
     }
 
+    /**
+     * @param int $offset
+     */
     public function offsetExists($offset) : bool
     {
         return isset($this->records[$offset]);
     }
 
+    /**
+     * @param int $offset
+     */
     public function offsetGet($offset) : ?Record
     {
         return isset($this->records[$offset]) ? $this->records[$offset] : null;
     }
 
+    /**
+     * @param int|null $offset
+     * @param Record   $value
+     */
     public function offsetSet($offset, $value) : void
     {
         if (is_null($offset)) {
@@ -59,6 +76,9 @@ final class RecordSet implements ArrayAccess, Iterator, Countable
         }
     }
 
+    /**
+     * @param int $offset
+     */
     public function offsetUnset($offset) : void
     {
         unset($this->records[$offset]);

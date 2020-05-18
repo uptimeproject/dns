@@ -10,7 +10,7 @@ use UptimeProject\Dns\Resources\RecordSet;
 
 class EndToEndTest extends TestCase
 {
-    public function test_mx_records()
+    public function test_mx_records() : void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600 IN	MX 10 primary.mail.example.com.
@@ -38,7 +38,7 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         $this->assertSame('fallback.mail.example.com', $records[1]->getContent());
     }
 
-    public function test_a_records()
+    public function test_a_records() : void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600	IN	A	104.198.14.52.
@@ -57,7 +57,7 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         $this->assertSame('104.198.14.52', $records[0]->getContent());
     }
 
-    public function test_aaaa_records()
+    public function test_aaaa_records() : void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		78416	IN	AAAA	2606:2800:220:1:248:1893:25c8:1946
@@ -76,7 +76,7 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         $this->assertSame('2606:2800:220:1:248:1893:25c8:1946', $records[0]->getContent());
     }
 
-    public function test_no_records()
+    public function test_no_records() : void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('');
@@ -86,7 +86,7 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         $this->assertSame(0, $records->count());
     }
 
-    public function test_txt_records()
+    public function test_txt_records() : void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		300	IN	TXT	"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"

@@ -18,7 +18,7 @@ final class DnsResolver
      */
     private $trimTrailingPeriods;
 
-    public function __construct(?ResolveHandlerInterface $resolver = null, $trimTrailingPeriods = true)
+    public function __construct(?ResolveHandlerInterface $resolver = null, bool $trimTrailingPeriods = true)
     {
         $this->resolver = $resolver ?? new DigHandler();
         $this->trimTrailingPeriods = $trimTrailingPeriods;

@@ -4,22 +4,34 @@ namespace UptimeProject\Dns\Resources;
 
 final class Record
 {
-    /* @var string */
+    /**
+     * @var string
+     */
     private $name;
 
-    /* @var string */
+    /**
+     * @var string
+     */
     private $type;
 
-    /* @var string */
+    /**
+     * @var string
+     */
     private $class;
 
-    /* @var int */
+    /**
+     * @var int
+     */
     private $ttl;
 
-    /* @var int */
+    /**
+     * @var int
+     */
     private $prio;
 
-    /* @var string */
+    /**
+     * @var string
+     */
     private $content;
 
     public function __construct(
@@ -86,7 +98,9 @@ final class Record
         return $this->content;
     }
 
-    /* @return string[] */
+    /**
+     * @return string[]
+     */
     private static function explodeLine(string $line) : array
     {
         // Split up the line, filter out empty entries, reset keys.

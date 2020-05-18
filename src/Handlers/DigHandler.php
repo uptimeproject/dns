@@ -9,7 +9,9 @@ use UptimeProject\Dns\Exceptions\InvalidArgument;
 
 class DigHandler implements ResolveHandlerInterface
 {
-    /* @var string[] */
+    /**
+     * @var string[]
+     */
     protected $allowedTypes = [
         'A',
         'AAAA',

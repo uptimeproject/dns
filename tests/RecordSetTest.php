@@ -8,7 +8,7 @@ use UptimeProject\Dns\Resources\RecordSet;
 
 class RecordSetTest extends TestCase
 {
-    public function test_array_access()
+    public function test_array_access() : void
     {
         $records = $this->get_records();
         $this->assertTrue(isset($records[0]));
@@ -20,7 +20,7 @@ class RecordSetTest extends TestCase
         unset($records[3]);
     }
 
-    public function test_iterable()
+    public function test_iterable() : void
     {
         $records = $this->get_records();
 
@@ -35,14 +35,14 @@ class RecordSetTest extends TestCase
         $this->assertSame(0, $records->key());
     }
 
-    public function test_count()
+    public function test_count() : void
     {
         $records = $this->get_records();
 
         $this->assertSame(2, $records->count());
     }
 
-    public function test_construct()
+    public function test_construct() : void
     {
         $records = new RecordSet([
             new Record('example.com', 3600, 'IN', 'A', null, '93.184.216.34'),
@@ -51,11 +51,12 @@ class RecordSetTest extends TestCase
         $this->assertSame(2, $records->count());
     }
 
-    public function test_construct_fail()
+    public function test_construct_fail() : void
     {
         $this->expectException(\InvalidArgumentException::class);
         $records = new RecordSet([
-            new RecordSet([]),
+            /** @phpstan-ignore PHPStan.Rules.Deprecations */
+            'invalid record',
             new Record('example.com', 3600, 'IN', 'AAAA', null, '2606:2800:220:1:248:1893:25c8:1946'),
         ]);
     }
