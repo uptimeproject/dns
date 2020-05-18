@@ -3,8 +3,8 @@
 namespace UptimeProject\Dns\Handlers;
 
 use Spatie\Dns\Dns;
-use UptimeProject\Dns\Exceptions\CouldNotFetchDns;
 use Spatie\Dns\Exceptions\CouldNotFetchDns as SpatieCouldNotFetchDns;
+use UptimeProject\Dns\Exceptions\CouldNotFetchDns;
 use UptimeProject\Dns\Exceptions\InvalidArgument;
 
 class DigHandler implements ResolveHandlerInterface

@@ -4,9 +4,9 @@ namespace UptimeProject\Dns\Tests;
 
 use PHPUnit\Framework\TestCase;
 use UptimeProject\Dns\DnsResolver;
+use UptimeProject\Dns\Handlers\MockHandler;
 use UptimeProject\Dns\Resources\Record;
 use UptimeProject\Dns\Resources\RecordSet;
-use UptimeProject\Dns\Handlers\MockHandler;
 
 class EndToEndTest extends TestCase
 {

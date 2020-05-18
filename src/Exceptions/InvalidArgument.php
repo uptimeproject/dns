@@ -2,10 +2,8 @@
 
 namespace UptimeProject\Dns\Exceptions;
 
-
 use InvalidArgumentException;
 
 class InvalidArgument extends InvalidArgumentException
 {
-
 }
