@@ -85,4 +85,23 @@ dutch.fitness.		3600 IN	MX 20 fallback.mail.pcextreme.nl.
         $this->assertInstanceOf(RecordSet::class, $records);
         $this->assertSame(0, $records->count());
     }
+
+    public function test_txt_records()
+    {
+        $dig = new MockHandler();
+        $dig->setMockResponse('example.com.		300	IN	TXT	"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"
+');
+        $service = new DnsResolver($dig);
+        $records = $service->resolve('example.com', 'TXT');
+        $this->assertInstanceOf(RecordSet::class, $records);
+        $this->assertSame(1, $records->count());
+
+        $this->assertInstanceOf(Record::class, $records[0]);
+        $this->assertSame('example.com', $records[0]->getName());
+        $this->assertSame(300, $records[0]->getTTL());
+        $this->assertSame('IN', $records[0]->getClass());
+        $this->assertSame('TXT', $records[0]->getType());
+        $this->assertSame(null, $records[0]->getPrio());
+        $this->assertSame('"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"', $records[0]->getContent());
+    }
 }

@@ -46,7 +46,7 @@ final class Record
         $class = strtoupper(next($bits));
         $type  = strtoupper(next($bits));
         $prio  = $type === 'MX' ? ((int) next($bits)) : null;
-        $content = end($bits);
+        $content = implode(' ', array_splice($bits, key($bits) + 1));
 
         if ($trimTrailingPeriods) {
             $name = substr($name, -1, 1) === '.' ? substr($name, 0, -1) : $name;

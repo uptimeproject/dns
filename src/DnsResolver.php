@@ -29,7 +29,7 @@ final class DnsResolver
         if (! $response = $this->resolver->resolve($host, $recordType, $nameServer)) {
             return new RecordSet();
         }
-        var_dump($response);
+
         return RecordSet::fromString($response, $this->trimTrailingPeriods);
     }
 }
