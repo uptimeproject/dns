@@ -27,7 +27,7 @@ jobs:
         run: vendor/bin/phpstan analyze
 
       - name: Run test suite
-        run: vendor/bin/phpunit --coverage-colver=
+        run: vendor/bin/phpunit
 
       - name: Upload code coverage
         env:
