@@ -1,0 +1,34 @@
+{
+    "name": "uptimeproject/dns",
+    "description": "DNS Resolving in PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jesse Kramer",
+            "email": "jkramer@pcextreme.nl"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "spatie/dns": "^1.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^9.1",
+        "phpstan/phpstan": "^0.12.25"
+    },
+    "autoload": {
+        "psr-4": {
+            "UptimeProject\\Dns\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "UptimeProject\\Dns\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
