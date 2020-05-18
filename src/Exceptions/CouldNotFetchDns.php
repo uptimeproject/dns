@@ -2,6 +2,8 @@
 
 namespace UptimeProject\Dns\Exceptions;
 
-class CouldNotFetchDns extends \Spatie\Dns\Exceptions\CouldNotFetchDns
+use Spatie\Dns\Exceptions\CouldNotFetchDns as SpatieCouldNotFetchDns;
+
+class CouldNotFetchDns extends SpatieCouldNotFetchDns
 {
 }

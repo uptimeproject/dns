@@ -5,6 +5,7 @@ namespace UptimeProject\Dns\Resources;
 use ArrayAccess;
 use Countable;
 use Iterator;
+use UptimeProject\Dns\Exceptions\InvalidArgument;
 
 final class RecordSet implements ArrayAccess, Iterator, Countable
 {
@@ -18,7 +19,7 @@ final class RecordSet implements ArrayAccess, Iterator, Countable
     {
         foreach ($records as $record) {
             if (! $record instanceof Record) {
-                throw new \InvalidArgumentException('Given record is not an instance of Record.');
+                throw new InvalidArgument('Given record is not an instance of Record.');
             }
         }
         $this->records  = $records;
