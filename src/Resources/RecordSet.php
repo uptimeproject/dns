@@ -6,7 +6,7 @@ use ArrayAccess;
 use Countable;
 use Iterator;
 
-class RecordSet implements ArrayAccess, Iterator, Countable
+final class RecordSet implements ArrayAccess, Iterator, Countable
 {
     /* @var Record[] */
     private $records;
@@ -14,7 +14,7 @@ class RecordSet implements ArrayAccess, Iterator, Countable
     /* @var int */
     private $position = 0;
 
-    public function __construct(array $records)
+    public function __construct(array $records = [])
     {
         foreach ($records as $record) {
             if (! $record instanceof Record) {

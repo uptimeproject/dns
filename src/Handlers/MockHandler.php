@@ -1,13 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace UptimeProject\Dns\Tests;
+namespace UptimeProject\Dns\Handlers;
 
-use UptimeProject\Dns\Resolver\ResolverInterface;
-
-class ResolverMock implements ResolverInterface
+final class MockHandler implements ResolveHandlerInterface
 {
     /* @var string */
-    protected $mockResponse;
+    private $mockResponse;
 
     public function setMockResponse(string $response) : void
     {

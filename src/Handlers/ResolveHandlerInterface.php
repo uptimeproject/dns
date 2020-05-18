@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace UptimeProject\Dns\Resolver;
+namespace UptimeProject\Dns\Handlers;
 
-interface ResolverInterface
+interface ResolveHandlerInterface
 {
     public function resolve(string $host, string $recordType, ?string $nameServer = null) : ?string;
 }

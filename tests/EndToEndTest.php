@@ -6,12 +6,13 @@ use PHPUnit\Framework\TestCase;
 use UptimeProject\Dns\DnsResolver;
 use UptimeProject\Dns\Resources\Record;
 use UptimeProject\Dns\Resources\RecordSet;
+use UptimeProject\Dns\Handlers\MockHandler;
 
 class EndToEndTest extends TestCase
 {
     public function test_mx_records()
     {
-        $dig = new ResolverMock();
+        $dig = new MockHandler();
         $dig->setMockResponse('dutch.fitness.		3600 IN	MX 10 primary.mail.pcextreme.nl.
 dutch.fitness.		3600 IN	MX 20 fallback.mail.pcextreme.nl.
 ');
@@ -39,7 +40,7 @@ dutch.fitness.		3600 IN	MX 20 fallback.mail.pcextreme.nl.
 
     public function test_a_records()
     {
-        $dig = new ResolverMock();
+        $dig = new MockHandler();
         $dig->setMockResponse('dutch.fitness.		3600	IN	A	104.198.14.52.
 ');
         $service = new DnsResolver($dig);
@@ -58,7 +59,7 @@ dutch.fitness.		3600 IN	MX 20 fallback.mail.pcextreme.nl.
 
     public function test_aaaa_records()
     {
-        $dig = new ResolverMock();
+        $dig = new MockHandler();
         $dig->setMockResponse('example.com.		78416	IN	AAAA	2606:2800:220:1:248:1893:25c8:1946
 ');
         $service = new DnsResolver($dig);
@@ -73,5 +74,15 @@ dutch.fitness.		3600 IN	MX 20 fallback.mail.pcextreme.nl.
         $this->assertSame('AAAA', $records[0]->getType());
         $this->assertSame(null, $records[0]->getPrio());
         $this->assertSame('2606:2800:220:1:248:1893:25c8:1946', $records[0]->getContent());
+    }
+
+    public function test_no_records()
+    {
+        $dig = new MockHandler();
+        $dig->setMockResponse('');
+        $service = new DnsResolver($dig);
+        $records = $service->resolve('example.com', 'A');
+        $this->assertInstanceOf(RecordSet::class, $records);
+        $this->assertSame(0, $records->count());
     }
 }

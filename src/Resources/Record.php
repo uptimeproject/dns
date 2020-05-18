@@ -2,7 +2,7 @@
 
 namespace UptimeProject\Dns\Resources;
 
-class Record
+final class Record
 {
     /* @var string */
     private $name;
@@ -87,7 +87,7 @@ class Record
     }
 
     /* @return string[] */
-    protected static function explodeLine(string $line) : array
+    private static function explodeLine(string $line) : array
     {
         // Split up the line, filter out empty entries, reset keys.
         $bits = preg_split("/[\t| ]/", $line);
