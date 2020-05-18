@@ -27,4 +27,9 @@ jobs:
         run: vendor/bin/phpstan analyze
 
       - name: Run test suite
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit --coverage-colver=
+
+      - name: Upload code coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: bash <(curl -s https://codecov.io/bash)
