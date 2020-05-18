@@ -29,6 +29,9 @@ foreach ($records as $record) {
 
 Specifying the nameserver is optional.
 
+As it is built on top of [spatie/dns](https://github.com/spatie/dns) this tool is inherently built on `dig`.
+Make sure you have dig installed, otherwise you cannot use this package!
+
 ## How to contribute
 
 Feel free to create a PR if you have any ideas for improvements. Or create an issue.
