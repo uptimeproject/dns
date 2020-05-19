@@ -1,7 +1,7 @@
 <a href="https://uptimeproject.io" target="_blank"><img src="https://uptimeproject.io/img/logo.png" height="50px" /></a>
 
 ![Codecov](https://img.shields.io/codecov/c/github/uptimeproject/dns?style=flat-square)
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fuptimeproject%2Fdns%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/uptimeproject/dns/master)
+![Mutation testing badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fuptimeproject%2Fdns%2Fmaster&style=flat-square)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/uptimeproject/dns/CI?style=flat-square)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/uptimeproject/dns?style=flat-square)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/v/uptimeproject/dns?style=flat-square)
