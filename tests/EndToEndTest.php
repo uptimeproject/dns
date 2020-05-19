@@ -15,6 +15,7 @@ class EndToEndTest extends TestCase
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600 IN	MX 10 primary.mail.example.com.
 example.com.		3600 IN	MX 20 fallback.mail.example.com.
+
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'MX');
@@ -61,6 +62,25 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		78416	IN	AAAA	2606:2800:220:1:248:1893:25c8:1946
+');
+        $service = new DnsResolver($dig);
+        $records = $service->resolve('example.com', 'AAAA');
+        $this->assertInstanceOf(RecordSet::class, $records);
+        $this->assertSame(1, $records->count());
+
+        $this->assertInstanceOf(Record::class, $records[0]);
+        $this->assertSame('example.com', $records[0]->getName());
+        $this->assertSame(78416, $records[0]->getTTL());
+        $this->assertSame('IN', $records[0]->getClass());
+        $this->assertSame('AAAA', $records[0]->getType());
+        $this->assertSame(null, $records[0]->getPrio());
+        $this->assertSame('2606:2800:220:1:248:1893:25c8:1946', $records[0]->getContent());
+    }
+
+    public function test_aaaa_records_lowercase() : void
+    {
+        $dig = new MockHandler();
+        $dig->setMockResponse('example.com.		78416	in	aaaa	2606:2800:220:1:248:1893:25c8:1946
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'AAAA');
