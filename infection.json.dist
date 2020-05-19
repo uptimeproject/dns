@@ -1,14 +1,15 @@
 {
+    "timeout": 10,
     "source": {
         "directories": [
             "src"
         ]
     },
     "logs": {
-        "text": "infection.log"
+        "text": "infection.log",
         "badge": {
-            "branch": "master"
-        }
+             "branch": "master"
+         }
     },
     "mutators": {
         "@default": true
