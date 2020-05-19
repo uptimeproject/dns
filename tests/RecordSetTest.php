@@ -22,17 +22,14 @@ class RecordSetTest extends TestCase
 
     public function test_iterable() : void
     {
-        $records = $this->get_records();
-
-        $this->assertSame('A', $records->current()->getType());
-        $records->next();
-        $this->assertSame('AAAA', $records->current()->getType());
-        $this->assertTrue($records->valid());
-        $records->next();
-        $this->assertFalse($records->valid());
-        $this->assertSame(2, $records->key());
-        $records->rewind();
-        $this->assertSame(0, $records->key());
+        foreach ($this->get_records() as $key => $value) {
+            $this->assertInstanceOf(Record::class, $value);
+            if ($key === 0) {
+                $this->assertSame('A', $value->getType());
+            } else {
+                $this->assertSame('AAAA', $value->getType());
+            }
+        }
     }
 
     public function test_count() : void

@@ -3,21 +3,17 @@
 namespace UptimeProject\Dns\Resources;
 
 use ArrayAccess;
+use ArrayIterator;
 use Countable;
-use Iterator;
+use IteratorAggregate;
 use UptimeProject\Dns\Exceptions\InvalidArgument;
 
-final class RecordSet implements ArrayAccess, Iterator, Countable
+final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
 {
     /**
      * @var Record[]
      */
     private $records;
-
-    /**
-     * @var int
-     */
-    private $position = 0;
 
     /**
      * @param Record[] $records
@@ -30,7 +26,6 @@ final class RecordSet implements ArrayAccess, Iterator, Countable
             }
         }
         $this->records  = $records;
-        $this->position = 0;
     }
 
     public static function fromString(string $data, bool $trimTrailingPeriods = true) : RecordSet
@@ -84,29 +79,12 @@ final class RecordSet implements ArrayAccess, Iterator, Countable
         unset($this->records[$offset]);
     }
 
-    public function rewind() : void
+    /**
+     * @return ArrayIterator<Record>
+     */
+    public function getIterator() : ArrayIterator
     {
-        $this->position = 0;
-    }
-
-    public function current() : ?Record
-    {
-        return $this->records[$this->position];
-    }
-
-    public function key() : int
-    {
-        return $this->position;
-    }
-
-    public function next() : void
-    {
-        ++$this->position;
-    }
-
-    public function valid() : bool
-    {
-        return isset($this->records[$this->position]);
+        return new ArrayIterator($this->records);
     }
 
     public function count() : int
