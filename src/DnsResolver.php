@@ -24,7 +24,7 @@ final class DnsResolver
         $this->trimTrailingPeriods = $trimTrailingPeriods;
     }
 
-    public function resolve(string $host, string $recordType, ?string $nameServer = null) : RecordSet
+    public function resolve(string $host, string $recordType, ?string $nameServer = null): RecordSet
     {
         if (! $response = $this->resolver->resolve($host, $recordType, $nameServer)) {
             return new RecordSet();

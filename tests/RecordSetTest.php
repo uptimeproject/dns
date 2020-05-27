@@ -8,7 +8,7 @@ use UptimeProject\Dns\Resources\RecordSet;
 
 class RecordSetTest extends TestCase
 {
-    public function test_array_access() : void
+    public function test_array_access(): void
     {
         $records = $this->get_records();
         $this->assertTrue(isset($records[0]));
@@ -20,7 +20,7 @@ class RecordSetTest extends TestCase
         unset($records[3]);
     }
 
-    public function test_iterable() : void
+    public function test_iterable(): void
     {
         foreach ($this->get_records() as $key => $value) {
             $this->assertInstanceOf(Record::class, $value);
@@ -32,14 +32,14 @@ class RecordSetTest extends TestCase
         }
     }
 
-    public function test_count() : void
+    public function test_count(): void
     {
         $records = $this->get_records();
 
         $this->assertSame(2, $records->count());
     }
 
-    public function test_construct() : void
+    public function test_construct(): void
     {
         $records = new RecordSet([
             new Record('example.com', 3600, 'IN', 'A', null, '93.184.216.34'),
@@ -48,7 +48,7 @@ class RecordSetTest extends TestCase
         $this->assertSame(2, $records->count());
     }
 
-    public function test_construct_fail() : void
+    public function test_construct_fail(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $records = new RecordSet([
@@ -58,7 +58,7 @@ class RecordSetTest extends TestCase
         ]);
     }
 
-    private function get_records() : RecordSet
+    private function get_records(): RecordSet
     {
         return new RecordSet([
             new Record('example.com', 3600, 'IN', 'A', null, '93.184.216.34'),

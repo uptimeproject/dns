@@ -27,7 +27,7 @@ class DigHandler implements ResolveHandlerInterface
     ];
 
     /* @throws CouldNotFetchDns */
-    public function resolve(string $host, string $recordType, ?string $nameServer = null) : ?string
+    public function resolve(string $host, string $recordType, ?string $nameServer = null): ?string
     {
         $this->assertHostIsValid($host);
         $this->assertRecordTypeIsValid($recordType);
@@ -43,14 +43,14 @@ class DigHandler implements ResolveHandlerInterface
         }
     }
 
-    private function assertHostIsValid(string $host) : void
+    private function assertHostIsValid(string $host): void
     {
         if (! filter_var($host, FILTER_VALIDATE_DOMAIN, ['flags' => FILTER_FLAG_HOSTNAME])) {
             throw new InvalidArgument("Host '$host' is invalid.");
         }
     }
 
-    private function assertRecordTypeIsValid(string $recordType) : void
+    private function assertRecordTypeIsValid(string $recordType): void
     {
         if (! in_array($recordType, $this->allowedTypes)) {
             throw new InvalidArgument("Record type '$recordType' is allowed.");

@@ -50,7 +50,7 @@ final class Record
         $this->content = $content;
     }
 
-    public static function fromString(string $data, bool $trimTrailingPeriods = true) : Record
+    public static function fromString(string $data, bool $trimTrailingPeriods = true): Record
     {
         $bits  = self::explodeLine($data);
         $name  = current($bits);
@@ -69,32 +69,32 @@ final class Record
         return new Record($name, $ttl, $class, $type, $prio, $content);
     }
 
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getTTL() : int
+    public function getTTL(): int
     {
         return $this->ttl;
     }
 
-    public function getClass() : string
+    public function getClass(): string
     {
         return $this->class;
     }
 
-    public function getType() : string
+    public function getType(): string
     {
         return $this->type;
     }
 
-    public function getPrio() : ?int
+    public function getPrio(): ?int
     {
         return $this->prio;
     }
 
-    public function getContent() : string
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -102,7 +102,7 @@ final class Record
     /**
      * @return string[]
      */
-    private static function explodeLine(string $line) : array
+    private static function explodeLine(string $line): array
     {
         // Split up the line, filter out empty entries, reset keys.
         $bits = preg_split("/[\t| ]/", $line) ?: [];

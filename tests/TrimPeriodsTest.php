@@ -10,7 +10,7 @@ use UptimeProject\Dns\Resources\RecordSet;
 
 class TrimPeriodsTest extends TestCase
 {
-    public function test_trim_periods_default() : void
+    public function test_trim_periods_default(): void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600	IN	A	104.198.14.52.
@@ -25,7 +25,7 @@ class TrimPeriodsTest extends TestCase
         $this->assertSame('104.198.14.52', $records[0]->getContent());
     }
 
-    public function test_trim_periods() : void
+    public function test_trim_periods(): void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600	IN	A	104.198.14.52.
@@ -40,7 +40,7 @@ class TrimPeriodsTest extends TestCase
         $this->assertSame('104.198.14.52', $records[0]->getContent());
     }
 
-    public function test_trim_no_periods() : void
+    public function test_trim_no_periods(): void
     {
         $dig = new MockHandler();
         $dig->setMockResponse('example.com.		3600	IN	A	104.198.14.52.
