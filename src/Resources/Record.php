@@ -105,7 +105,8 @@ final class Record
     private static function explodeLine(string $line): array
     {
         // Split up the line, filter out empty entries, reset keys.
-        $bits = preg_split("/[\t| ]/", $line) ?: [];
+        $bits = preg_split("/[\t| ]/", $line);
+        $bits = $bits !== false ? $bits : [];
         $bits = array_filter($bits);
         return array_values($bits);
     }
