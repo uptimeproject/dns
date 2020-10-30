@@ -6,6 +6,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
+
     <testsuites>
         <testsuite name="all">
             <directory>./tests</directory>
