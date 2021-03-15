@@ -50,4 +50,4 @@ vendor/bin/phpunit --coverage-text
 
 ```
 
-These tools will also run in GitHub actions on PR's and pushes on master.
+These tools will also run in GitHub actions on PR's and pushes on main.
