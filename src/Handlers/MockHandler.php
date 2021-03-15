@@ -4,12 +4,9 @@ namespace UptimeProject\Dns\Handlers;
 
 final class MockHandler implements ResolveHandlerInterface
 {
-    /**
-     * @var string
-     */
-    private $mockResponse;
+    private ?string $mockResponse = null;
 
-    public function setMockResponse(string $response): void
+    public function setMockResponse(?string $response): void
     {
         $this->mockResponse = $response;
     }
