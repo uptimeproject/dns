@@ -48,6 +48,8 @@ vendor/bin/phpstan analyze
 
 vendor/bin/phpunit --coverage-text
 
+phpdbg -qrr vendor/bin/infection
+
 ```
 
 These tools will also run in GitHub actions on PR's and pushes on main.
