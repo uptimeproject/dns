@@ -2,6 +2,7 @@
 
 namespace UptimeProject\Dns\Tests;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use UptimeProject\Dns\Exceptions\CouldNotFetchDns;
 use UptimeProject\Dns\Exceptions\InvalidArgument;
@@ -13,18 +14,18 @@ class DigHandlerTest extends TestCase
     {
         $dig = new DigHandler();
         $response = $dig->resolve('uptimeproject.io', 'A');
-        $this->assertIsString($response);
-        $this->assertNotNull($response);
-        $this->assertNotSame('', $response);
+        Assert::assertIsString($response);
+        Assert::assertNotNull($response);
+        Assert::assertNotSame('', $response);
     }
 
     public function test_resolve_own_nameserver(): void
     {
         $dig = new DigHandler();
         $response = $dig->resolve('example.com', 'A', 'a.iana-servers.net');
-        $this->assertIsString($response);
-        $this->assertNotNull($response);
-        $this->assertNotSame('', $response);
+        Assert::assertIsString($response);
+        Assert::assertNotNull($response);
+        Assert::assertNotSame('', $response);
     }
 
     public function test_resolve_invalid_host(): void
