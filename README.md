@@ -1,10 +1,10 @@
 <a href="https://uptimeproject.io" target="_blank"><img src="https://uptimeproject.io/img/logo.png" height="50px" /></a>
 
-![Codecov](https://img.shields.io/codecov/c/github/uptimeproject/dns?style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/uptimeproject/dns/CI?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/uptimeproject/dns?style=flat-square)
-![Packagist PHP Version Support](https://img.shields.io/packagist/v/uptimeproject/dns?style=flat-square)
-![Packagist Downloads](https://img.shields.io/packagist/dt/uptimeproject/dns?style=flat-square)
+[![Codecov](https://img.shields.io/codecov/c/github/uptimeproject/dns?style=flat-square)](https://app.codecov.io/gh/uptimeproject/dns)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/uptimeproject/dns/CI?style=flat-square)](https://github.com/uptimeproject/dns/actions)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/uptimeproject/dns?style=flat-square)](https://packagist.org/packages/uptimeproject/dns)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/v/uptimeproject/dns?style=flat-square)](https://packagist.org/packages/uptimeproject/dns)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/uptimeproject/dns?style=flat-square)](https://packagist.org/packages/uptimeproject/dns)
 
 This tool is meant as a replacement for `dns_get_record` with some extra functionality.
 
