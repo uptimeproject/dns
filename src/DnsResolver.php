@@ -8,15 +8,8 @@ use UptimeProject\Dns\Resources\RecordSet;
 
 final class DnsResolver
 {
-    /**
-     * @var ResolveHandlerInterface
-     */
-    private $resolver;
-
-    /**
-     * @var bool
-     */
-    private $trimTrailingPeriods;
+    private ResolveHandlerInterface $resolver;
+    private bool $trimTrailingPeriods;
 
     public function __construct(?ResolveHandlerInterface $resolver = null, bool $trimTrailingPeriods = true)
     {

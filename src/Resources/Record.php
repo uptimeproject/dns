@@ -4,49 +4,26 @@ namespace UptimeProject\Dns\Resources;
 
 final class Record
 {
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var string
-     */
-    private $class;
-
-    /**
-     * @var int
-     */
-    private $ttl;
-
-    /**
-     * @var int|null
-     */
-    private $prio;
-
-    /**
-     * @var string
-     */
-    private $content;
+    private string $name;
+    private string $type;
+    private string $class;
+    private int $ttl;
+    private ?int $priority;
+    private string $content;
 
     public function __construct(
         string $name,
         int $ttl,
         string $class,
         string $type,
-        ?int $prio,
+        ?int $priority,
         string $content
     ) {
         $this->name = $name;
         $this->type = $type;
         $this->class = $class;
         $this->ttl = $ttl;
-        $this->prio = $prio;
+        $this->priority = $priority;
         $this->content = $content;
     }
 
@@ -89,9 +66,15 @@ final class Record
         return $this->type;
     }
 
+    /** @deprecated Use getPriority instead */
     public function getPrio(): ?int
     {
-        return $this->prio;
+        return $this->getPriority();
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
     }
 
     public function getContent(): string

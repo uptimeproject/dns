@@ -10,10 +10,8 @@ use UptimeProject\Dns\Exceptions\InvalidArgument;
 
 final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
 {
-    /**
-     * @var array<int,Record>
-     */
-    private $records;
+    /** @var array<int,Record> */
+    private array $records;
 
     /**
      * @param array<Record|mixed> $records
