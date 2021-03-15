@@ -58,7 +58,7 @@ class TrimPeriodsTest extends TestCase
         Assert::assertInstanceOf(Record::class, $records[0]);
         /** @var Record $record */
         $record = $records[0];
-        Assert::assertSame('example.com', $record->getName());
-        Assert::assertSame('104.198.14.52', $record->getContent());
+        Assert::assertSame('example.com.', $record->getName());
+        Assert::assertSame('104.198.14.52.', $record->getContent());
     }
 }
