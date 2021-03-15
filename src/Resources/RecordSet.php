@@ -11,12 +11,12 @@ use UptimeProject\Dns\Exceptions\InvalidArgument;
 final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
 {
     /**
-     * @var Record[]
+     * @var array<int,Record>
      */
     private $records;
 
     /**
-     * @param Record[] $records
+     * @param array<Record|mixed> $records
      */
     public function __construct(array $records = [])
     {
@@ -31,19 +31,15 @@ final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
     public static function fromString(string $data, bool $trimTrailingPeriods = true): RecordSet
     {
         $lines = array_filter(explode("\n", $data));
-        $records = array_map(function ($line) use ($trimTrailingPeriods) {
+        $records = array_map(function ($line) use ($trimTrailingPeriods): Record {
             return Record::fromString($line, $trimTrailingPeriods);
         }, $lines);
-
-        $records = array_filter($records, function ($record) {
-            return $record instanceof Record;
-        });
 
         return new RecordSet($records);
     }
 
     /**
-     * @param int $offset
+     * @param mixed $offset
      */
     public function offsetExists($offset): bool
     {
@@ -51,7 +47,7 @@ final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * @param int $offset
+     * @param mixed $offset
      */
     public function offsetGet($offset): ?Record
     {
@@ -59,8 +55,8 @@ final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * @param int|null $offset
-     * @param Record   $value
+     * @param mixed $offset
+     * @param mixed $value
      */
     public function offsetSet($offset, $value): void
     {
@@ -72,7 +68,7 @@ final class RecordSet implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * @param int $offset
+     * @param mixed $offset
      */
     public function offsetUnset($offset): void
     {
