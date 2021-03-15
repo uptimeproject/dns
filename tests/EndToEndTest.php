@@ -117,6 +117,16 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(0, $records->count());
     }
 
+    public function test_not_resolved(): void
+    {
+        $dig = new MockHandler();
+        $dig->setMockResponse(null);
+        $service = new DnsResolver($dig);
+        $records = $service->resolve('example.com', 'A');
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(0, $records->count());
+    }
+
     public function test_txt_records(): void
     {
         $dig = new MockHandler();
