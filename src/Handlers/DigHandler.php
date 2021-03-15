@@ -52,7 +52,7 @@ class DigHandler implements ResolveHandlerInterface
 
     private function assertRecordTypeIsValid(string $recordType): void
     {
-        if (! in_array($recordType, $this->allowedTypes)) {
+        if (! in_array($recordType, $this->allowedTypes, true)) {
             throw new InvalidArgument("Record type '$recordType' is allowed.");
         }
     }

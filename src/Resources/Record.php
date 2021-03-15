@@ -53,20 +53,20 @@ final class Record
     public static function fromString(string $data, bool $trimTrailingPeriods = true): Record
     {
         $bits  = self::explodeLine($data);
-        $name  = current($bits);
+        $name  = (string) current($bits);
         $ttl   = (int) next($bits);
         $class = strtoupper(next($bits));
         $type  = strtoupper(next($bits));
-        $prio  = $type === 'MX' ? ((int) next($bits)) : null;
+        $priority  = $type === 'MX' ? ((int) next($bits)) : null;
         $key = (int) key($bits);
         $content = implode(' ', array_splice($bits, $key + 1));
 
         if ($trimTrailingPeriods) {
-            $name = substr($name, -1, 1) === '.' ? substr($name, 0, -1) : $name;
-            $content = substr($content, -1, 1) === '.' ? substr($content, 0, -1) : $content;
+            $name = self::trimTrailingPeriod($name);
+            $content = self::trimTrailingPeriod($content);
         }
 
-        return new Record($name, $ttl, $class, $type, $prio, $content);
+        return new Record($name, $ttl, $class, $type, $priority, $content);
     }
 
     public function getName(): string
@@ -105,8 +105,18 @@ final class Record
     private static function explodeLine(string $line): array
     {
         // Split up the line, filter out empty entries, reset keys.
-        $bits = preg_split("/[\t| ]/", $line) ?: [];
+        $bits = preg_split("/[\t| ]/", $line);
+        $bits = $bits !== false ? $bits : [];
         $bits = array_filter($bits);
         return array_values($bits);
+    }
+
+    private static function trimTrailingPeriod(string $string): string
+    {
+        $lastChar = substr($string, -1, 1);
+        if ($lastChar === '.') {
+            return substr($string, 0, -1);
+        }
+        return $string;
     }
 }

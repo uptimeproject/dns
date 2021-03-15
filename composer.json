@@ -10,15 +10,16 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.4|^8.0",
         "spatie/dns": "^1.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
-        "infection/infection": "^0.13.6",
         "phpstan/phpstan": "^0.12.25",
-        "phpunit/phpunit": "^7.5",
-        "uptimeproject/php-cs-fixer-config": "^1.0.0"
+        "phpunit/phpunit": "^9.0",
+        "uptimeproject/php-cs-fixer-config": "^1.1.3",
+        "phpstan/phpstan-deprecation-rules": "^0.12.5",
+        "phpstan/phpstan-strict-rules": "^0.12.5"
     },
     "autoload": {
         "psr-4": {
