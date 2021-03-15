@@ -6,7 +6,7 @@ use UptimeProject\Dns\Handlers\DigHandler;
 use UptimeProject\Dns\Handlers\ResolveHandlerInterface;
 use UptimeProject\Dns\Resources\RecordSet;
 
-final class DnsResolver
+final class DnsResolver implements DnsResolverInterface
 {
     private ResolveHandlerInterface $resolver;
     private bool $trimTrailingPeriods;
