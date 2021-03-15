@@ -2,6 +2,7 @@
 
 namespace UptimeProject\Dns\Tests;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use UptimeProject\Dns\DnsResolver;
 use UptimeProject\Dns\Handlers\MockHandler;
@@ -17,12 +18,14 @@ class TrimPeriodsTest extends TestCase
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'A');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame('104.198.14.52', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record */
+        $record = $records[0];
+        Assert::assertSame('example.com', $record->getName());
+        Assert::assertSame('104.198.14.52', $record->getContent());
     }
 
     public function test_trim_periods(): void
@@ -32,12 +35,14 @@ class TrimPeriodsTest extends TestCase
 ');
         $service = new DnsResolver($dig, true);
         $records = $service->resolve('example.com', 'A');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame('104.198.14.52', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record */
+        $record = $records[0];
+        Assert::assertSame('example.com', $record->getName());
+        Assert::assertSame('104.198.14.52', $record->getContent());
     }
 
     public function test_trim_no_periods(): void
@@ -47,11 +52,13 @@ class TrimPeriodsTest extends TestCase
 ');
         $service = new DnsResolver($dig, false);
         $records = $service->resolve('example.com', 'A');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com.', $records[0]->getName());
-        $this->assertSame('104.198.14.52.', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record */
+        $record = $records[0];
+        Assert::assertSame('example.com.', $record->getName());
+        Assert::assertSame('104.198.14.52.', $record->getContent());
     }
 }

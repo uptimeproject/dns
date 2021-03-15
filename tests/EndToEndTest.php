@@ -2,6 +2,7 @@
 
 namespace UptimeProject\Dns\Tests;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use UptimeProject\Dns\DnsResolver;
 use UptimeProject\Dns\Handlers\MockHandler;
@@ -19,24 +20,28 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'MX');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(2, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(2, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame(3600, $records[0]->getTTL());
-        $this->assertSame('IN', $records[0]->getClass());
-        $this->assertSame('MX', $records[0]->getType());
-        $this->assertSame(10, $records[0]->getPrio());
-        $this->assertSame('primary.mail.example.com', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record1 */
+        $record1 = $records[0];
+        Assert::assertSame('example.com', $record1->getName());
+        Assert::assertSame(3600, $record1->getTTL());
+        Assert::assertSame('IN', $record1->getClass());
+        Assert::assertSame('MX', $record1->getType());
+        Assert::assertSame(10, $record1->getPrio());
+        Assert::assertSame('primary.mail.example.com', $record1->getContent());
 
-        $this->assertInstanceOf(Record::class, $records[1]);
-        $this->assertSame('example.com', $records[1]->getName());
-        $this->assertSame(3600, $records[1]->getTTL());
-        $this->assertSame('IN', $records[1]->getClass());
-        $this->assertSame('MX', $records[1]->getType());
-        $this->assertSame(20, $records[1]->getPrio());
-        $this->assertSame('fallback.mail.example.com', $records[1]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[1]);
+        /** @var Record $record2 */
+        $record2 = $records[1];
+        Assert::assertSame('example.com', $record2->getName());
+        Assert::assertSame(3600, $record2->getTTL());
+        Assert::assertSame('IN', $record2->getClass());
+        Assert::assertSame('MX', $record2->getType());
+        Assert::assertSame(20, $record2->getPrio());
+        Assert::assertSame('fallback.mail.example.com', $record2->getContent());
     }
 
     public function test_a_records(): void
@@ -46,16 +51,18 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'A');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame(3600, $records[0]->getTTL());
-        $this->assertSame('IN', $records[0]->getClass());
-        $this->assertSame('A', $records[0]->getType());
-        $this->assertSame(null, $records[0]->getPrio());
-        $this->assertSame('104.198.14.52', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record1 */
+        $record1 = $records[0];
+        Assert::assertSame('example.com', $record1->getName());
+        Assert::assertSame(3600, $record1->getTTL());
+        Assert::assertSame('IN', $record1->getClass());
+        Assert::assertSame('A', $record1->getType());
+        Assert::assertSame(null, $record1->getPrio());
+        Assert::assertSame('104.198.14.52', $record1->getContent());
     }
 
     public function test_aaaa_records(): void
@@ -65,16 +72,18 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'AAAA');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame(78416, $records[0]->getTTL());
-        $this->assertSame('IN', $records[0]->getClass());
-        $this->assertSame('AAAA', $records[0]->getType());
-        $this->assertSame(null, $records[0]->getPrio());
-        $this->assertSame('2606:2800:220:1:248:1893:25c8:1946', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record1 */
+        $record1 = $records[0];
+        Assert::assertSame('example.com', $record1->getName());
+        Assert::assertSame(78416, $record1->getTTL());
+        Assert::assertSame('IN', $record1->getClass());
+        Assert::assertSame('AAAA', $record1->getType());
+        Assert::assertSame(null, $record1->getPrio());
+        Assert::assertSame('2606:2800:220:1:248:1893:25c8:1946', $record1->getContent());
     }
 
     public function test_aaaa_records_lowercase(): void
@@ -84,16 +93,18 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'AAAA');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame(78416, $records[0]->getTTL());
-        $this->assertSame('IN', $records[0]->getClass());
-        $this->assertSame('AAAA', $records[0]->getType());
-        $this->assertSame(null, $records[0]->getPrio());
-        $this->assertSame('2606:2800:220:1:248:1893:25c8:1946', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record1 */
+        $record1 = $records[0];
+        Assert::assertSame('example.com', $record1->getName());
+        Assert::assertSame(78416, $record1->getTTL());
+        Assert::assertSame('IN', $record1->getClass());
+        Assert::assertSame('AAAA', $record1->getType());
+        Assert::assertSame(null, $record1->getPrio());
+        Assert::assertSame('2606:2800:220:1:248:1893:25c8:1946', $record1->getContent());
     }
 
     public function test_no_records(): void
@@ -102,8 +113,8 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         $dig->setMockResponse('');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'A');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(0, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(0, $records->count());
     }
 
     public function test_txt_records(): void
@@ -113,15 +124,17 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
 ');
         $service = new DnsResolver($dig);
         $records = $service->resolve('example.com', 'TXT');
-        $this->assertInstanceOf(RecordSet::class, $records);
-        $this->assertSame(1, $records->count());
+        Assert::assertInstanceOf(RecordSet::class, $records);
+        Assert::assertSame(1, $records->count());
 
-        $this->assertInstanceOf(Record::class, $records[0]);
-        $this->assertSame('example.com', $records[0]->getName());
-        $this->assertSame(300, $records[0]->getTTL());
-        $this->assertSame('IN', $records[0]->getClass());
-        $this->assertSame('TXT', $records[0]->getType());
-        $this->assertSame(null, $records[0]->getPrio());
-        $this->assertSame('"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"', $records[0]->getContent());
+        Assert::assertInstanceOf(Record::class, $records[0]);
+        /** @var Record $record1 */
+        $record1 = $records[0];
+        Assert::assertSame('example.com', $record1->getName());
+        Assert::assertSame(300, $record1->getTTL());
+        Assert::assertSame('IN', $record1->getClass());
+        Assert::assertSame('TXT', $record1->getType());
+        Assert::assertSame(null, $record1->getPrio());
+        Assert::assertSame('"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"', $record1->getContent());
     }
 }
