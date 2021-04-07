@@ -66,12 +66,6 @@ final class Record
         return $this->type;
     }
 
-    /** @deprecated Use getPriority instead */
-    public function getPrio(): ?int
-    {
-        return $this->getPriority();
-    }
-
     public function getPriority(): ?int
     {
         return $this->priority;

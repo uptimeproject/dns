@@ -30,7 +30,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(3600, $record1->getTTL());
         Assert::assertSame('IN', $record1->getClass());
         Assert::assertSame('MX', $record1->getType());
-        Assert::assertSame(10, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(10, $record1->getPriority());
         Assert::assertSame('primary.mail.example.com', $record1->getContent());
 
@@ -41,7 +40,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(3600, $record2->getTTL());
         Assert::assertSame('IN', $record2->getClass());
         Assert::assertSame('MX', $record2->getType());
-        Assert::assertSame(20, $record2->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(20, $record2->getPriority());
         Assert::assertSame('fallback.mail.example.com', $record2->getContent());
     }
@@ -63,7 +61,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(3600, $record1->getTTL());
         Assert::assertSame('IN', $record1->getClass());
         Assert::assertSame('A', $record1->getType());
-        Assert::assertSame(null, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(null, $record1->getPriority());
         Assert::assertSame('104.198.14.52', $record1->getContent());
     }
@@ -85,7 +82,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(78416, $record1->getTTL());
         Assert::assertSame('IN', $record1->getClass());
         Assert::assertSame('AAAA', $record1->getType());
-        Assert::assertSame(null, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(null, $record1->getPriority());
         Assert::assertSame('2606:2800:220:1:248:1893:25c8:1946', $record1->getContent());
     }
@@ -107,7 +103,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(78416, $record1->getTTL());
         Assert::assertSame('IN', $record1->getClass());
         Assert::assertSame('AAAA', $record1->getType());
-        Assert::assertSame(null, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(null, $record1->getPriority());
         Assert::assertSame('2606:2800:220:1:248:1893:25c8:1946', $record1->getContent());
     }
@@ -149,7 +144,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame(300, $record1->getTTL());
         Assert::assertSame('IN', $record1->getClass());
         Assert::assertSame('TXT', $record1->getType());
-        Assert::assertSame(null, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(null, $record1->getPriority());
         Assert::assertSame('"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"', $record1->getContent());
     }
