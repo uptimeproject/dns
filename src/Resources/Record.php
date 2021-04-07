@@ -42,6 +42,9 @@ final class Record
             $name = self::trimTrailingPeriod($name);
             $content = self::trimTrailingPeriod($content);
         }
+        if ($type === 'TXT') {
+            $content = self::trimQuotes($content);
+        }
 
         return new Record($name, $ttl, $class, $type, $priority, $content);
     }
@@ -101,5 +104,10 @@ final class Record
             return substr($string, 0, -1);
         }
         return $string;
+    }
+
+    private static function trimQuotes(string $string): string
+    {
+        return trim($string, '"');
     }
 }

@@ -151,6 +151,6 @@ example.com.		3600 IN	MX 20 fallback.mail.example.com.
         Assert::assertSame('TXT', $record1->getType());
         Assert::assertSame(null, $record1->getPrio()); // @phpstan-ignore-line
         Assert::assertSame(null, $record1->getPriority());
-        Assert::assertSame('"v=spf1 include:_spf4.example.com include:_spf6.example.com ~all"', $record1->getContent());
+        Assert::assertSame('v=spf1 include:_spf4.example.com include:_spf6.example.com ~all', $record1->getContent());
     }
 }
