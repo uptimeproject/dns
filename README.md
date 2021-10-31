@@ -53,3 +53,7 @@ phpdbg -qrr vendor/bin/infection
 ```
 
 These tools will also run in GitHub actions on PR's and pushes on main.
+
+## UptimeProject.io
+
+Check out [uptimeproject.io](https://uptimeproject.io)
