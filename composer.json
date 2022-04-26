@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "spatie/dns": "^1.4.0"
+        "spatie/dns": "^1.4.0|^2.0.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16.0",
